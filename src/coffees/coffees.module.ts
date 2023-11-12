@@ -29,6 +29,10 @@ export class CoffeBrandsFactory {
       inject: [CoffeBrandsFactory],
     },
     {
+      provide: COFFE_BRANDS,
+      useValue: ['kapal api', 'luwak', 'lampung'],
+    },
+    {
       provide: ConfigService,
       useClass:
         process.env.NODE_ENV === 'development'
