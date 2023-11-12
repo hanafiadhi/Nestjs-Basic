@@ -4,9 +4,10 @@ import { AppService } from './app.service';
 
 import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRantingModule } from './coffee-ranting/coffee-ranting.module';
+import { RmqModule } from './rmq/rmq.module';
 
 @Module({
-  imports: [CoffeesModule, CoffeeRantingModule],
+  imports: [CoffeesModule, CoffeeRantingModule, RmqModule],
   controllers: [AppController],
   providers: [AppService],
 })

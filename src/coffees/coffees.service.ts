@@ -1,13 +1,12 @@
-import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { Coffee } from './entities/coffees.entitiy';
 import { COFFE_BRANDS } from './coffe.constant';
 
-@Injectable()
+@Injectable({ scope: Scope.REQUEST })
 export class CoffeesService {
-
-constructor(@Inject(COFFE_BRANDS) coffeBrands: string[]){
-    console.log(coffeBrands)
-}
+  constructor(@Inject(COFFE_BRANDS) coffeBrands: string[]) {
+    console.log('CoffeService Instatiated');
+  }
   private coffees: Coffee[] = [
     {
       id: 1,
