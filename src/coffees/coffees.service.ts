@@ -1,11 +1,25 @@
 import { Inject, Injectable, NotFoundException, Scope } from '@nestjs/common';
 import { Coffee } from './entities/coffees.entitiy';
 import { COFFE_BRANDS } from './coffe.constant';
+import { ConfigService, ConfigType } from '@nestjs/config';
+import coffesConfig from './config/coffes.config';
 
-@Injectable({ scope: Scope.REQUEST })
+@Injectable()
 export class CoffeesService {
-  constructor(@Inject(COFFE_BRANDS) coffeBrands: string[]) {
+  constructor(
+    @Inject(COFFE_BRANDS) coffeBrands: string[],
+    private readonly configService: ConfigService,
+    @Inject(coffesConfig.KEY)
+    private readonly coffeConfiguration: ConfigType<typeof coffesConfig>,
+  ) {
     console.log('CoffeService Instatiated');
+    console.log(coffeConfiguration.foo);
+    // const appName = this.configService.get<string>('env.appName', 'salah');
+    // const database = this.configService.get('database', 'salah');
+    // const coffesConfig = this.configService.get('coffes.foo', 'salah');
+    // console.log(coffesConfig);
+    // console.log('hasil' + appName);
+    // console.log('hasil 2 ' + database);
   }
   private coffees: Coffee[] = [
     {

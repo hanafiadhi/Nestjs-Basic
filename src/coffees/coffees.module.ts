@@ -2,6 +2,9 @@ import { Injectable, Module } from '@nestjs/common';
 import { CoffeesController } from './coffees.controller';
 import { CoffeesService } from './coffees.service';
 import { COFFE_BRANDS } from './coffe.constant';
+import { ConfigModule } from '@nestjs/config';
+import appConfig from './config/app.config';
+import coffesConfig from './config/coffes.config';
 
 class ConfigService {}
 class DevelopmentService {}
@@ -15,6 +18,7 @@ export class CoffeBrandsFactory {
 }
 
 @Module({
+  imports: [ConfigModule.forFeature(coffesConfig)],
   controllers: [CoffeesController],
   providers: [
     CoffeesService,
