@@ -21,6 +21,7 @@ import {
   MongoIdPipe,
   SafeMongoIdTransform,
 } from 'src/common/pipe/mongo-id/mongo-id.pipe';
+import { isFloat32Array } from 'util/types';
 
 export class NestedValidationObject {
   @IsNotEmpty()
@@ -36,9 +37,8 @@ export class NestedValidationArrayObjet {
   note: string;
 }
 export class checkId {
-  //   @IsMongoId()
   @IsNotEmpty()
-  @Transform((value) => SafeMongoIdTransform(value))
+  //   @Transform((value) => SafeMongoIdTransform(value))
   city: string;
 
   @IsNotEmpty()
@@ -73,7 +73,7 @@ export class checkId {
   //   })
   //   tags: Set<string>;
 
-  //   @ValidateNested({ each: true })
-  //   @Type(() => NestedValidationArrayObjet)
-  //   arrayField: NestedValidationArrayObjet[];
+  @ValidateNested({ each: true })
+  @Type(() => NestedValidationArrayObjet)
+  arrayField: NestedValidationArrayObjet[];
 }
