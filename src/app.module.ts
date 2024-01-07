@@ -6,7 +6,6 @@ import { CoffeesModule } from './coffees/coffees.module';
 import { CoffeeRantingModule } from './coffee-ranting/coffee-ranting.module';
 import { RmqModule } from './rmq/rmq.module';
 import { ConfigModule } from '@nestjs/config';
-import * as Joi from 'joi';
 
 @Module({
   imports: [

@@ -14,12 +14,14 @@ import { CreateCoffeDto } from './dto/create-coffe.dto.ts';
 import { UpdateCoffeDto } from './dto/update-coffe.dto';
 import { REQUEST } from '@nestjs/core';
 import { Request } from 'express';
+import { IdParamDto } from './dto/checkId-coffe.dto';
+import { MongoIdPipe } from 'src/common/pipe/mongo-id/mongo-id.pipe';
+import { checkId } from './dto/checkIdBody-coffe.dto';
 
 @Controller('coffees')
 export class CoffeesController {
   constructor(
-    private readonly coffeesService: CoffeesService,
-    @Inject(REQUEST) private readonly request: Request,
+    private readonly coffeesService: CoffeesService, // @Inject(REQUEST) private readonly request: Request,
   ) {
     // console.log(request);
     console.log('CoffeController is Created');
@@ -32,8 +34,15 @@ export class CoffeesController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.coffeesService.findOne(id);
+  findOne(@Param('id', MongoIdPipe) id: string, @Body() payload: checkId) {
+    console.log(id);
+    console.log(payload.city);
+    // console.log(province);
+    // console.log(province);
+    // console.log(payload.arrayField[0].note);
+
+    return id;
+    // return this.coffeesService.findOne(id);
   }
 
   @Post()
